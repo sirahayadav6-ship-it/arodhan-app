@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050510">
+<title>ARODHAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050510; --cyan:#00f2ff; --violet:#8a2be2; --pink:#ff00cc;
+  --text:#f4f7ff; --muted:#8e98bd;
+  --display:'Unbounded','Segoe UI',Arial,sans-serif;
+  --body:'Outfit','Segoe UI',Arial,sans-serif;
+  box-sizing:border-box;
+}
+*{margin:0;padding:0;box-sizing:inherit}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--body);-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+body{display:flex;justify-content:center;align-items:center;cursor:pointer;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+body.fs{cursor:none}
+
+.layer{position:fixed;inset:0;pointer-events:none}
+
+/* Aurora: plain gradients, moved with transform only (no blur filters = no flicker) */
+.aurora i{position:absolute;border-radius:50%;will-change:transform;backface-visibility:hidden}
+.aurora i:nth-child(1){width:90vmax;height:90vmax;left:-35vmax;top:-40vmax;background:radial-gradient(circle,rgba(0,242,255,.42),transparent 62%);animation:a1 22s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:85vmax;height:85vmax;right:-35vmax;top:-5vmax;background:radial-gradient(circle,rgba(138,43,226,.5),transparent 62%);animation:a2 26s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:80vmax;height:80vmax;left:-5vmax;bottom:-45vmax;background:radial-gradient(circle,rgba(255,0,204,.38),transparent 62%);animation:a3 30s ease-in-out infinite alternate}
+@keyframes a1{to{transform:translate3d(30vmax,22vmax,0) scale(1.15)}}
+@keyframes a2{to{transform:translate3d(-30vmax,20vmax,0) scale(.9)}}
+@keyframes a3{to{transform:translate3d(25vmax,-22vmax,0) scale(1.2)}}
+
+/* Faint drifting grid */
+.grid{inset:-80px;opacity:.5;
+  background:linear-gradient(rgba(0,242,255,.09) 1px,transparent 1px) 0 0/80px 80px,
+             linear-gradient(90deg,rgba(0,242,255,.09) 1px,transparent 1px) 0 0/80px 80px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 15%,transparent 75%);mask-image:radial-gradient(ellipse at center,#000 15%,transparent 75%);
+  animation:drift 12s linear infinite;will-change:transform}
+@keyframes drift{to{transform:translate3d(80px,80px,0)}}
+
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+.vignette{background:radial-gradient(ellipse at center,transparent 50%,rgba(2,2,10,.7) 100%)}
+
+/* Card */
+.stage{position:relative;width:88%;max-width:940px}
+.card{position:relative;border-radius:34px;padding:1.5px;
+  background:linear-gradient(135deg,var(--cyan),var(--violet) 50%,var(--pink))}
+.card::after{content:"";position:absolute;inset:0;border-radius:34px;pointer-events:none;
+  box-shadow:0 0 60px rgba(0,242,255,.35),0 0 130px rgba(255,0,204,.25);opacity:.45;animation:glow 6s ease-in-out infinite alternate}
+@keyframes glow{to{opacity:1}}
+.inner{position:relative;border-radius:32.5px;padding:clamp(44px,8vmin,84px) 4vmin;text-align:center;background:rgba(6,6,22,.82)}
+.corner{position:absolute;width:20px;height:20px;border:2px solid var(--cyan);opacity:.75}
+.tl{top:18px;left:18px;border-right:0;border-bottom:0;border-top-left-radius:8px}
+.tr{top:18px;right:18px;border-left:0;border-bottom:0;border-top-right-radius:8px}
+.bl{bottom:18px;left:18px;border-right:0;border-top:0;border-bottom-left-radius:8px}
+.br{bottom:18px;right:18px;border-left:0;border-top:0;border-bottom-right-radius:8px}
+
+.welcome{color:var(--muted);font-size:clamp(12px,1.9vmin,17px);font-weight:500;letter-spacing:.6em;padding-left:.6em;margin-bottom:clamp(18px,3.4vmin,32px)}
+
+/* Name: solid colour + glow (no background-clip, so no clipped letters) */
+.name{animation:reveal 1.6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes reveal{from{opacity:0;transform:translateY(18px) scale(.95)}to{opacity:1;transform:none}}
+h1{font-family:var(--display);font-weight:700;font-size:80px;line-height:1.1;letter-spacing:.08em;padding-left:.08em;white-space:nowrap;
+  color:#fff;text-shadow:0 0 14px rgba(0,242,255,.8),0 0 40px rgba(0,242,255,.45),0 0 90px rgba(138,43,226,.5);
+  animation:hue 9s ease-in-out infinite alternate}
+@keyframes hue{
+  0%{color:#e9fdff;text-shadow:0 0 14px rgba(0,242,255,.85),0 0 42px rgba(0,242,255,.5),0 0 90px rgba(0,242,255,.35)}
+  100%{color:#fff0fb;text-shadow:0 0 14px rgba(255,0,204,.85),0 0 42px rgba(255,0,204,.5),0 0 90px rgba(138,43,226,.5)}}
+
+.line{position:relative;width:min(240px,45%);height:3px;margin:clamp(22px,4vmin,38px) auto;border-radius:10px;background:linear-gradient(90deg,var(--cyan),var(--pink));box-shadow:0 0 14px var(--cyan)}
+.line::after{content:"";position:absolute;top:50%;left:0;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#fff;box-shadow:0 0 14px 3px var(--cyan);animation:scan 3.6s ease-in-out infinite alternate}
+@keyframes scan{to{left:calc(100% - 10px)}}
+
+.tagline{display:flex;justify-content:center;align-items:center;gap:clamp(10px,2.4vmin,26px);flex-wrap:wrap;font-size:clamp(13px,2.2vmin,21px);font-weight:500;letter-spacing:.34em}
+.tagline b{font-weight:500;color:#5f6990;animation:lit 6s infinite}
+.tagline b:nth-of-type(2){animation-delay:2s}.tagline b:nth-of-type(3){animation-delay:4s}
+.tagline em{font-style:normal;font-size:.6em;color:var(--pink)}
+@keyframes lit{0%,28%{color:#fff}34%,100%{color:#5f6990}}
+
+.hint{position:fix
