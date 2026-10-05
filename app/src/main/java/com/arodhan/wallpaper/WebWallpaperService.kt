@@ -476,7 +476,7 @@ private class Scene(private val d: Float, private val am: AssetManager) {
         tp.textSize = bannerTs
         bannerTw = tp.measureText("ARODHAN")
         cardH = bannerTs * 2.2f
-        cardT = hf * .94f - cardH
+        cardT = hf * .78f - cardH
         val cx = cardL + cardW / 2f
         val cy = cardT + cardH / 2f
         borderShader = LinearGradient(
