@@ -110,7 +110,7 @@ class Overlay(d: Float, private val th: Theme, private val am: AssetManager) : G
         tp.textSize = bannerTs
         bannerTw = tp.measureText(shown)
         cardH = bannerTs * 2.2f
-        cardT = hf * .94f - cardH
+        cardT = hf * .85f - cardH
         val cx = cardL + cardW / 2f
         val cy = cardT + cardH / 2f
         borderShader = LinearGradient(
