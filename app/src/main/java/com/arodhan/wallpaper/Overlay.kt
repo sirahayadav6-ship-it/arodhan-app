@@ -325,7 +325,7 @@ class Overlay(d: Float, private val th: Theme, private val am: AssetManager) : G
         tp.textSize = bannerTs
         tp.letterSpacing = .16f
         tp.textAlign = Paint.Align.CENTER
-        val by = cy + bannerTs * .36f
+        val by = cy + bannerTs * .10f
         tp.shader = null
         tp.style = Paint.Style.FILL_AND_STROKE
         tp.strokeWidth = d * 8f; tp.color = argbF(cyan, .11f); c.drawText(shown, cx, by, tp)
