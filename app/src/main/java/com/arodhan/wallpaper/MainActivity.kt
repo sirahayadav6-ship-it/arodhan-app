@@ -242,7 +242,7 @@ class MainActivity : Activity() {
         et.setTextColor(Color.WHITE)
         et.setHintTextColor(Color.GRAY)
         et.hint = "ARODHAN"
-        et.filters = arrayOf(InputFilter.LengthFilter(14))
+        et.filters = arrayOf(InputFilter.LengthFilter(40))
         et.setSingleLine(true)
         et.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) { }
